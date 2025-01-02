@@ -1,0 +1,67 @@
+<!DOCTYPE html>  
+<html lang="es">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Contacto - Mi Negocio</title>  
+    <link rel="stylesheet" href="styles.css">  
+    <script src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap" async defer></script>  
+    <style>  
+        body {  
+            font-family: Arial, sans-serif;  
+            margin: 0;  
+            padding: 0;  
+            background-color: #f4f4f4;  
+        }  
+        header {  
+            background-color: #4CAF50; /* Color principal */  
+            color: white;  
+            padding: 15px;  
+            text-align: center;  
+        }  
+        .contact-info {  
+            padding: 20px;  
+            background: white;  
+            margin: 20px auto;  
+            border-radius: 5px;  
+            max-width: 600px;  
+        }  
+        #map {  
+            height: 400px;  
+            width: 100%;  
+        }  
+    </style>  
+</head>  
+<body>  
+
+<header>  
+    <h1>Contacto</h1>  
+</header>  
+
+<div class="contact-info">  
+    <h2>Información de Contacto</h2>  
+    <p><strong>Teléfono:</strong> +34 658 783 864</p>  
+    <p><strong>Email:</strong> piscinaslp@gmail.com</p>  
+    <p><strong>Dirección:</strong> calle: Tindaya, 171-73,Las palmas de gran canaria, españa </p>  
+</div>  
+
+<div id="map"></div>  
+
+<script>  
+    function initMap() {  
+        const negocioUbicacion = { lat: 40.416775, lng: -3.703790 }; // Cambia a la ubicación de tu negocio  
+        const map = new google.maps.Map(document.getElementById("map"), {  
+            zoom: 14,  
+            center: negocioUbicacion,  
+        });  
+        const marker = new google.maps.Marker({  
+            position: negocioUbicacion,  
+            map: map,  
+            title: "Nuestra Ubicación",  
+            
+        });  
+    }  
+</script>  
+
+</body>  
+</html>
