@@ -1,0 +1,27 @@
+[  
+    {  
+        "src": "oip.jpg",  
+        "alt": "Descripción de la Imagen 1"  
+    },  
+    {  
+        "src": "r.jpg",  
+        "alt": "Descripción de la Imagen 2"  
+    },  
+    {  
+        "src": "oip(1).jpg",  
+        "alt": "Descripción de la Imagen 3"  
+    },
+    { 
+      
+        "src": "oip(2).jpg",  
+        "alt": "Descripción de la Imagen 3"  
+    }, 
+    {  
+        "src": "oip(3).jpg",  
+        "alt": "Descripción de la Imagen 3"  
+    },
+    {  
+        "src": "descargar.jpg",  
+        "alt": "Descripción de la Imagen 3"  
+    }  
+]

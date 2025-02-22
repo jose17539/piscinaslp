@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Mi Form</title>
+        <!-- FAVICON -->
+        <link rel="icon" type="image/x-icon" href="../favicon.ico">
+        <!-- CSS -->
+        <link rel="stylesheet" href="../css/estilos.css">
+    </head>
+    <body>
+        <header>
+            <h1>Mi Web</h1>
+            <nav class="navigationBar">
+                <ul class="navigationBarList">
+                    <li>
+                        <a class="enlace" href="../index.html">Inicio</a>
+                    </li>
+                    <li>
+                        <a class="enlace active" href="#">presupuesto</a>
+                    </li>
+                    <li>
+                        <a class="enlace" href="./galeria.html">Galería</a>
+                    </li>
+                    <li>
+                        <a class="enlace" href="./contacto.html">Contacto</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+
+        </main>
+        <footer>
+
+        </footer>
+        <script src="./scripts/index.js"></script>
+    </body>
+    <body>  
+        <h1>Generador de Presupuesto</h1>  
+        <form id="budget-form">  
+            <!DOCTYPE html>  
+            <html lang="es">  
+            <head>  
+                <meta charset="UTF-8">  
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+                <title>Formulario de Presupuesto</title>  
+                <style>  
+                    #resultado { margin-top: 20px; font-weight: bold; }  
+                </style>  
+            </head>  
+            <body>  
+            
+            <h1>Formulario de Presupuesto</h1>  
+            
+            <form id="contactForm">  
+                <h2>Datos de Contacto</h2>  
+                <label for="nombre">Nombre (máx 15 caracteres):</label>  
+                <input type="text" id="nombre" name="nombre" required><br><br>  
+            
+                <label for="apellidos">Apellidos (máx 40 caracteres):</label>  
+                <input type="text" id="apellidos" name="apellidos" required><br><br>  
+            
+                <label for="telefono">Teléfono (máx 9 dígitos):</label>  
+                <input type="text" id="telefono" name="telefono" required><br><br>  
+            
+                <label for="correo">Correo Electrónico:</label>  
+                <input type="email" id="correo" name="correo" required><br><br>  
+            
+                <h2>Presupuesto</h2>  
+                <label for="producto">Seleccione un producto:</label>  
+                <select id="producto" name="producto" onchange="calcularPresupuesto()" required>  
+                    <option value="" disabled selected>-- Elija un producto --</option>  
+                    <option value="100">Producto 1 - $100</option>  
+                    <option value="200">Producto 2 - $200</option>  
+                    <option value="300">Producto 3 - $300</option>  
+                </select><br><br>  
+            
+                <label for="plazo">Plazo (días):</label>  
+                <input type="number" id="plazo" name="plazo" min="1" onchange="calcularPresupuesto()" required><br><br>  
+            
+                <h3>Extras:</h3>  
+                <label><input type="checkbox" value="50" onchange="calcularPresupuesto()"> Extra 1 - $50</label><br>  
+                <label><input type="checkbox" value="100" onchange="calcularPresupuesto()"> Extra 2 - $100</label><br>  
+                <label><input type="checkbox" value="150" onchange="calcularPresupuesto()"> Extra 3 - $150</label><br><br>  
+            
+                <div id="resultado">Presupuesto Final: $0</div><br>  
+            
+                <label><input type="checkbox" id="condiciones" required> Acepto las condiciones de privacidad.</label><br><br>  
+            
+                <button type="submit">Enviar Presupuesto</button>  
+                <button type="reset" onclick="resetForm()">Resetear Formulario</button>  
+            </form>  
+            
+            <script>  
+                document.getElementById('contactForm').addEventListener('submit', function(event) {  
+                    event.preventDefault();  
+                    if (validarDatosContacto()) {  
+                        alert("Formulario enviado correctamente.");  
+                        // Aquí se puede enviar el formulario a un servidor si es necesario  
+                    }  
+                });  
+            
+                function validarDatosContacto() {  
+                    const nombre = document.getElementById('nombre').value;  
+                    const apellidos = document.getElementById('apellidos').value;  
+                    const telefono = document.getElementById('telefono').value;  
+                    const correo = document.getElementById('correo').value;  
+            
+                    // Validar Nombre  
+                    const nombreRegex = /^[A-Za-z]{1,15}$/;  
+                    if (!nombreRegex.test(nombre)) {  
+                        alert("El nombre debe contener solo letras y tener un máximo de 15 caracteres.");  
+                        return false;  
+                    }  
+            
+                    // Validar Apellidos  
+                    const apellidosRegex = /^[A-Za-z]{1,40}$/;  
+                    if (!apellidosRegex.test(apellidos)) {  
+                        alert("Los apellidos deben contener solo letras y tener un máximo de 40 caracteres.");  
+                        return false;  
+                    }  
+            
+                    // Validar Teléfono  
+                    const telefonoRegex = /^\d{1,9}$/;  
+                    if (!telefonoRegex.test(telefono)) {  
+                        alert("El teléfono debe contener solo números y tener un máximo de 9 dígitos.");  
+                        return false;  
+                    }  
+            
+                    // Validar Correo Electrónico  
+                    const correoRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;  
+                    if (!correoRegex.test(correo)) {  
+                        alert("El correo electrónico no es válido.");  
+                        return false;  
+                    }  
+            
+                    return true;  
+                }  
+            
+                function calcularPresupuesto() {  
+                    const producto = parseFloat(document.getElementById('producto').value) || 0;  
+                    const plazo = parseInt(document.getElementById('plazo').value) || 0;  
+                    const extras = [...document.querySelectorAll('input[type="checkbox"]:checked')]  
+                                   .reduce((total, checkbox) => total + parseFloat(checkbox.value), 0);  
+            
+                    let total = producto + extras;  
+            
+                    // Aplicar descuento según el plazo  
+                    if (plazo >= 30) { // Descuento del 10%  
+                        total *= 0.9;  
+                    }  
+            
+                    document.getElementById('resultado').innerText = "Presupuesto Final: $" + total.toFixed(2);  
+                }  
+            
+                function resetForm() {  
+                    document.getElementById('resultado').innerText = "Presupuesto Final: $0";  
+                }  
+            </script>  
+            
+            </body>  
+            </html>
+        <div id="result"></div>  
+    
+        <script>  
+            document.getElementById('calculate').addEventListener('click', function() {  
+                const quantity = document.getElementById('quantity').value;  
+                const unitPrice = document.getElementById('unit-price').value;  
+    
+                const total = quantity * unitPrice;  
+                
+                document.getElementById('result').innerText = `El total del presupuesto es: $${total.toFixed(2)}`;  
+            });  
+        </script>  
+    </body>  
+</html>
