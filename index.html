@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Mi Form</title>
+        <!-- FAVICON -->
+        <link rel="icon" type="image/x-icon" href="./favicon.ico">
+        <!-- CSS -->
+        <link rel="stylesheet" href="./css/estilos.css">
+    </head>
+    <body>
+        <!-- HEADER -->
+        <header>
+            <h1 id="encabezado1">Piscinassl</h1>
+            <nav class="navigationBar">
+                <ul class="navigationBarList">
+                    <li>
+                        <a class="enlace active" href="#">Inicio</a>
+                    </li>
+                    <li>
+                        <a class="enlace" href="./views/presupuesto.html">presupuesto</a>
+                    </li>
+                    <li>
+                        <a class="enlace" href="./views/galeria.html">Galería</a>
+                    </li>
+                    <li>
+                        <a class="enlace" href="./views/contacto.html">Contacto</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <!-- MAIN -->
+        <div class="container">  
+            <head>  
+                <meta charset="UTF-8">  
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+                <title>Página de Noticias</title>  
+                
+            </head>  
+            <!DOCTYPE html>  
+<html lang="es">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Página de Inicio</title>  
+    <link rel="stylesheet" href="styles.css">  
+</head>  
+<body>  
+
+<header>  
+    <h1>Bienvenido a Nuestro Sitio Web</h1>  
+</header>  
+
+<section id="about">  
+    <h2>Acerca de Nosotros</h2>  
+    <p>Somos una empresa dedicada a brindar servicios de alta calidad en tecnología.</p>  
+</section>  
+
+<section id="services">  
+    <h2>Nuestros Servicios</h2>  
+    <ul>  
+        <li>construir piscinas</li>  
+        <li>Soporte Técnico</li>  
+    </ul>  
+</section>  
+
+<section id="news">  
+    <h2>Últimas Noticias</h2>  
+    <div id="news-container">Cargando noticias...</div>  
+</section>  
+
+<footer>  
+    <p>&copy; 2025 Empresa. Todos los derechos reservados.</p>  
+</footer>  
+
+<script>  
+    // Cargar noticias desde el archivo JSON  
+    fetch('news.json')  
+        .then(response => {  
+            if (!response.ok) {  
+                throw new Error('Network response was not ok ' + response.statusText);  
+            }  
+            return response.json();  
+        })  
+        .then(data => {  
+            const newsContainer = document.getElementById('news-container');  
+            newsContainer.innerHTML = ''; // Limpiar el contenido anterior  
+
+            data.forEach(newsItem => {  
+                const newsDiv = document.createElement('div');  
+                newsDiv.innerHTML = `  
+                    <h3>${newsItem.title}</h3>  
+                    <p>${newsItem.description}</p>  
+                    <small>${newsItem.date}</small>  
+                    <hr>  
+                `;  
+                newsContainer.appendChild(newsDiv);  
+            });  
+        })  
+        .catch(error => {  
+            console.error('Error cargando las noticias:', error);  
+            document.getElementById('news-container').innerHTML = "Error al cargar las noticias.";  
+        });  
+</script>  
+
+</body>  
+</html>
+</html>
