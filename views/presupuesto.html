@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Mi Form</title>
+        <!-- FAVICON -->
+        <link rel="icon" type="image/x-icon" href="../favicon.ico">
+        <!-- CSS -->
+        <link rel="stylesheet" href="../css/estilos.css">
+    </head>
+    <body>
+        <header>
+            <h1 id="encabezado1">Piscinassl</h1>
+            <nav class="navigationBar">
+                <ul class="navigationBarList">
+                    <li>
+                        <a class="enlace" href="../index.html">Inicio</a>
+                    </li>
+                    <li>
+                        <a class="enlace active" href="./presupuesto.html">presupuesto</a>
+                    </li>
+                    <li>
+                        <a class="enlace" href="./galeria.html">Galería</a>
+                    </li>
+                    <li>
+                        <a class="enlace" href="./contacto.html">Contacto</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+
+        </main>
+        <footer>
+        </footer>
+    </body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Presupuesto</title>
+        <style>
+            body { font-family: Arial, sans-serif; }
+            .error { color: red; }
+        </style>
+    </head>
+    <body>
+        <h2>Formulario de Presupuesto</h2>
+        <form id="presupuestoForm">
+            <fieldset>
+                <legend>Datos de Contacto</legend>
+                <label>Nombre: <input type="text" id="nombre" maxlength="15"></label>
+                <span class="error" id="errorNombre"></span><br>
+                <label>Apellidos: <input type="text" id="apellidos" maxlength="40"></label>
+                <span class="error" id="errorApellidos"></span><br>
+                <label>Teléfono: <input type="text" id="telefono" maxlength="9"></label>
+                <span class="error" id="errorTelefono"></span><br>
+                <label>Email: <input type="email" id="email"></label>
+                <span class="error" id="errorEmail"></span>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Presupuesto</legend>
+                <label>Producto:
+                    <select id="producto">
+                        <option value="100">Opción 1 - 100€</option>
+                        <option value="200">Opción 2 - 200€</option>
+                        <option value="300">Opción 3 - 300€</option>
+                    </select>
+                </label><br>
+                <label>Plazo (meses): <input type="number" id="plazo" min="1"></label><br>
+                <label>Extras:</label><br>
+                <label><input type="checkbox" class="extra" value="50"> Extra 1 - 50€</label><br>
+                <label><input type="checkbox" class="extra" value="75"> Extra 2 - 75€</label><br>
+                <label><input type="checkbox" class="extra" value="100"> Extra 3 - 100€</label><br>
+                <h3>Presupuesto total: <span id="total">0</span>€</h3>
+            </fieldset>
+            
+            <label><input type="checkbox" id="condiciones"> Acepto las condiciones</label><br>
+            <button type="submit">Enviar</button>
+            <button type="reset">Resetear</button>
+        </form>
+        
+        <script>
+            function validarFormulario(event) {
+                event.preventDefault();
+                let valido = true;
+                
+                function mostrarError(id, mensaje) {
+                    document.getElementById(id).textContent = mensaje;
+                }
+                
+                let nombre = document.getElementById("nombre").value;
+                let apellidos = document.getElementById("apellidos").value;
+                let telefono = document.getElementById("telefono").value;
+                let email = document.getElementById("email").value;
+                let condiciones = document.getElementById("condiciones").checked;
+                
+                let regexNombre = /^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{1,15}$/;
+                let regexApellidos = /^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{1,40}$/;
+                let regexTelefono = /^[0-9]{9}$/;
+                let regexEmail = /^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,}$/;
+                
+                mostrarError("errorNombre", regexNombre.test(nombre) ? "" : "Nombre inválido");
+                mostrarError("errorApellidos", regexApellidos.test(apellidos) ? "" : "Apellidos inválidos");
+                mostrarError("errorTelefono", regexTelefono.test(telefono) ? "" : "Teléfono inválido");
+                mostrarError("errorEmail", regexEmail.test(email) ? "" : "Email inválido");
+                
+                if (!regexNombre.test(nombre) || !regexApellidos.test(apellidos) || !regexTelefono.test(telefono) || !regexEmail.test(email) || !condiciones) {
+                    valido = false;
+                }
+                
+                if (valido) alert("Formulario enviado correctamente");
+            }
+            
+            function calcularPresupuesto() {
+                let producto = parseFloat(document.getElementById("producto").value);
+                let plazo = parseInt(document.getElementById("plazo").value) || 1;
+                let extras = document.querySelectorAll(".extra:checked");
+                let total = producto;
+                
+                extras.forEach(extra => total += parseFloat(extra.value));
+                total *= (plazo >= 12) ? 0.9 : 1;
+                document.getElementById("total").textContent = total.toFixed(2);
+            }
+            
+            document.getElementById("presupuestoForm").addEventListener("submit", validarFormulario);
+            document.querySelectorAll("input, select").forEach(elemento => elemento.addEventListener("input", calcularPresupuesto));
+        </script>
+    </body>
+    </html>
