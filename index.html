@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <!-- FAVICON -->
+        <link rel="icon" type="image/x-icon" href="./favicon.ico">
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/estilos.css">
+ 
+
+
+        <!-- HEADER -->
+        <header>
+            <h1 id="encabezado1">Piscinassl</h1>
+            
+                <ul class="navigationBarList">
+                 <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="../Jose Sanchez Guillermo trabajoJAVASCRIPT/views/galeria.html">galeria</a></li>
+                        <li><a href="../Jose Sanchez Guillermo trabajoJAVASCRIPT/views/presupuesto.html">presupuesto</a></li>
+                        <li><a href="../Jose Sanchez Guillermo trabajoJAVASCRIPT/views/contacto.html">Contacto</a></li>
+                    </ul>
+                </ul>
+        </header>
+            
+            <section id="inicio">
+                <h2>Inicio</h2>
+                <p>Bienvenidos a nuestra página web, donde encontrarás información sobre nuestros servicios y las últimas noticias.</p>
+            </section>
+            
+            <section id="sobre-nosotros">
+                <h2>Sobre Nosotros</h2>
+                <p>Somos una empresa dedicada a brindar soluciones innovadoras para nuestros clientes.</p>
+            </section>
+            
+            <section id="servicios">
+                <h2>Servicios</h2>
+                <p>Ofrecemos una variedad de servicios para satisfacer tus necesidades, incluyendo consultoría, desarrollo web y más.</p>
+            </section>
+            
+            <section id="noticias">
+                <h2>Últimas Noticias</h2>
+                <div id="contenedor-noticias">
+                    <p>Cargando noticias...</p>
+                </div>
+            </section>
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    fetch("scripts/news.json")
+    .then(response => response.json())
+    .then(noticias => {
+        console.log("Datos recibidos:", noticias); // Verifica la estructura en la consola
+
+        if (!Array.isArray(noticias)) {
+            throw new Error("El formato de noticias.json no es un array.");
+        }
+
+        let contenedor = document.getElementById("contenedor-noticias");
+        noticias.forEach(noticia => {
+            let articulo = document.createElement("article");
+            articulo.innerHTML = `<h3>${noticia.titulo}</h3><p>${noticia.contenido}</p>`;
+            contenedor.appendChild(articulo);
+        });
+    })
+    .catch(error => console.error("Error al cargar las noticias", error));
+                });
+            </script>
+    </body>
+   
+        <a href="https://www.facebook.com" target="_blank">
+            <img src="./imagenes/facebook.jpg" alt="Facebook" width="30">
+        </a>
+        <a href="https://www.twitter.com" target="_blank">
+            <img src="./imagenes/twitter.jpg" alt="Twitter" width="30">
+        </a>
+        <a href="https://www.instagram.com" target="_blank">
+            <img src="./imagenes/instagram.jpg" alt="Instagram" width="30">
+        </a>
+    </div>
+    <p>Dirección de la empresa: Calle Ejemplo 123, Ciudad, País</p>
+    <p><a href="aviso-legal.html" style="color: white; text-decoration: none;">Aviso Legal</a></p>
+</html>
+
