@@ -1,0 +1,19 @@
+{
+  "noticias": [
+      {
+          "titulo": "Nueva tecnología revoluciona el mercado",
+          "descripcion": "Una nueva innovación está cambiando la forma en que interactuamos con la tecnología.",
+          "fecha": "2025-03-02"
+      },
+      {
+          "titulo": "Avances en inteligencia artificial",
+          "descripcion": "Los últimos desarrollos en IA están permitiendo nuevas aplicaciones en diversas industrias.",
+          "fecha": "2025-03-01"
+      },
+      {
+          "titulo": "Evento tecnológico global anunciado",
+          "descripcion": "Se ha confirmado la fecha para el próximo evento tecnológico que reunirá a expertos de todo el mundo.",
+          "fecha": "2025-02-28"
+      }
+  ]
+}
